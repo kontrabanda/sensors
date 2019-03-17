@@ -1,0 +1,16 @@
+version: '3'
+services:
+  sensors-backend:
+    build: ./sensors-backend
+    volumes:
+      - ./sensors-backend/build/libs:/app
+    ports:
+      - 4400:4000
+
+  sensors-frontend:
+    build: ./sensors-frontend
+    volumes:
+      - ./sensors-frontend:/app
+    ports:
+      - 3300:3000
+

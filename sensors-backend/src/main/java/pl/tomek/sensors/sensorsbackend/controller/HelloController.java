@@ -13,7 +13,7 @@ public class HelloController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Object helloWorld() {
         Map<String, Object> result = new HashMap<>();
-        result.put("text", "Hello World2!");
+        result.put("text", "Hello World5!");
         return result;
     }
 }

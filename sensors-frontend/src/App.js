@@ -12,7 +12,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <span>
-            TEST SENSORS 3
+            TEST SENSORS 4
           </span>
         </header>
       </div>
