@@ -74,28 +74,38 @@ void loop() {
    
   // Return the response
   client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/html");
+  client.println("Content-Type: application/json");
   client.println(""); //  do not forget this one
   client.println("");
   client.println("");
   
-  int wilgotnosc = dht.getHumidity();
-  client.print("TEST: ");
-  client.print(wilgotnosc);
-  client.print("%RH | ");
+  int dhtHumidity = dht.getHumidity();
+//  client.print("TEST: ");
+//  client.print(wilgotnosc);
+//  client.print("%RH | ");
   delay(100);
   
   //Pobranie informacji o temperaturze
-  int temperatura = dht.getTemperature();
-  client.print(temperatura);
-  client.print("*C");
+  int dthTemperature = dht.getTemperature();
+//  client.print(temperatura);
+//  client.print("*C");
   delay(100);
 
   temperatureSensor.requestTemperatures();
-  client.print("| Aktualna temperatura: ");
-  client.print(temperatureSensor.getTempCByIndex(0));
-  client.print("*C");
+  float ds18b20Temperature = temperatureSensor.getTempCByIndex(0);
+//  client.print("| Aktualna temperatura: ");
+//  client.print(temperatureSensor.getTempCByIndex(0));
+//  client.print("*C");
   delay(100);
+
+  String msg =  String("{") +
+                  String("\"ds18b20Temperature\":") + String(ds18b20Temperature, 2) + 
+                  String(",") +
+                  String("\"dthTemperature\":") + String(dthTemperature) + 
+                  String(",") +
+                  String("\"dhtHumidity\":") + String(dhtHumidity) +
+                String("}");
+  client.print(msg);
   
   client.println("");
   client.println("");
