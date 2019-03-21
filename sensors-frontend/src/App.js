@@ -3,6 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: 'test test test4'
+    };
+  }
+
+  componentDidMount() {
+    fetch("/api/hello")
+        .then(res => res.json())
+        .then(
+            (result) => {
+              this.setState({
+                text: result.text
+              });
+            },
+            (error) => {
+              this.setState({
+                text: 'Error9!'
+              });
+            }
+        )
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,7 +36,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
           <span>
-            TEST SENSORS 4
+            {this.state.text}
           </span>
         </header>
       </div>
