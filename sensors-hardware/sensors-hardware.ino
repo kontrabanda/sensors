@@ -6,8 +6,8 @@
 #include "SensorsMessage.h"
 #include "DS18B20AndDHTMessage.h"
 
-const char* ssid     = "UPC2622721"; // Tu wpisz nazwę swojego wifi
-const char* password = "EBHUUEVD"; // Tu wpisz hasło do swojego wifi
+const char* ssid     = "*"; // Tu wpisz nazwę swojego wifi
+const char* password = "*"; // Tu wpisz hasło do swojego wifi
  
 WiFiServer server(80);
 

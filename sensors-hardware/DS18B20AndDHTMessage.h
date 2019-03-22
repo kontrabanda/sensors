@@ -4,7 +4,6 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <DHT.h>
-#include <ESP8266WiFi.h>  // to remove
 
 #include "SensorsMessage.h"
 
