@@ -11,8 +11,11 @@ class DS18B20AndDHTMessage: public SensorsMessage {
 public:
 	String createMessage();
   void begin();
-  DS18B20AndDHTMessage(): dht(), oneWire(D1), temperatureSensor(&oneWire) { }
+  DS18B20AndDHTMessage(int dhtPin, int ds18b20Pin): dhtPin(dhtPin), ds18b20Pin(ds18b20Pin), dht(), oneWire(ds18b20Pin), temperatureSensor(&oneWire) { }
 private:
+  int dhtPin;
+  int ds18b20Pin;
+  
 	DHT dht;
 	OneWire oneWire;
 	DallasTemperature temperatureSensor;

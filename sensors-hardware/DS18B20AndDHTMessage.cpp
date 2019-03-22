@@ -3,7 +3,7 @@
 
 void DS18B20AndDHTMessage::begin()
 {
-  dht.setup(D2);
+  dht.setup(dhtPin);
   temperatureSensor.begin();
 }
 

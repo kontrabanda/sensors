@@ -4,19 +4,17 @@
 #include <ESP8266WiFi.h>  
 
 #include "SensorsMessage.h"
-#include "DS18B20AndDHTMessage.h"
 
 class SensorsServer {
 public:
   void start();
   void run();
-  SensorsServer(): sensorsMessage(), server(80) { }
+  SensorsServer(char* ssid, char* password, SensorsMessage* sensorsMsg): ssid(ssid), password(password), sensorsMessage(sensorsMsg), server(80) { }
 private:
-  const char* ssid     = "UPC2622721"; // Tu wpisz nazwę swojego wifi
-  const char* password = "EBHUUEVD"; // Tu wpisz hasło do swojego wifi
+  char* ssid;
+  char* password;
   WiFiServer server;
-  DS18B20AndDHTMessage sensorsMessage;
-  
+  SensorsMessage* sensorsMessage;
 };
 
 #endif

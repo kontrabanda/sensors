@@ -29,7 +29,7 @@ void SensorsServer::start() {
   Serial.print(WiFi.localIP());
   Serial.println("/"); 
 
-  sensorsMessage.begin();
+  sensorsMessage->begin();
 }
 
 void SensorsServer::run() {
@@ -62,7 +62,7 @@ void SensorsServer::run() {
   client.println("Content-Type: application/json");
   client.println(""); //  do not forget this one
 
-  String msg = sensorsMessage.createMessage();
+  String msg = sensorsMessage->createMessage();
   client.print(msg);
   delay(1);
   Serial.println("Client disonnected");
