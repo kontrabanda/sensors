@@ -3,6 +3,9 @@
 #include <DallasTemperature.h>
 #include <DHT.h>
 
+#include "SensorsMessage.h"
+#include "DS18B20AndDHTMessage.h"
+
 const char* ssid     = "UPC2622721"; // Tu wpisz nazwę swojego wifi
 const char* password = "EBHUUEVD"; // Tu wpisz hasło do swojego wifi
  
@@ -11,6 +14,8 @@ WiFiServer server(80);
 DHT dht;
 OneWire oneWire(D1);
 DallasTemperature temperatureSensor(&oneWire);
+
+DS18B20AndDHTMessage sensorsMessage;
 
 void setup() {
   Serial.begin(9600);
@@ -41,9 +46,7 @@ void setup() {
   Serial.print(WiFi.localIP());
   Serial.println("/"); 
 
-  //dht.setup(5);
-  dht.setup(D2);
-  temperatureSensor.begin();
+  sensorsMessage.begin();
 }
 
 void loop() {
@@ -69,50 +72,15 @@ void loop() {
    
   // Read the first line of the request
   String request = client.readStringUntil('\r');
-  Serial.println(request);
   client.flush();
    
   // Return the response
   client.println("HTTP/1.1 200 OK");
   client.println("Content-Type: application/json");
   client.println(""); //  do not forget this one
-  client.println("");
-  client.println("");
-  
-  int dhtHumidity = dht.getHumidity();
-//  client.print("TEST: ");
-//  client.print(wilgotnosc);
-//  client.print("%RH | ");
-  delay(100);
-  
-  //Pobranie informacji o temperaturze
-  int dthTemperature = dht.getTemperature();
-//  client.print(temperatura);
-//  client.print("*C");
-  delay(100);
 
-  temperatureSensor.requestTemperatures();
-  float ds18b20Temperature = temperatureSensor.getTempCByIndex(0);
-//  client.print("| Aktualna temperatura: ");
-//  client.print(temperatureSensor.getTempCByIndex(0));
-//  client.print("*C");
-  delay(100);
-
-  String msg =  String("{") +
-                  String("\"ds18b20Temperature\":") + String(ds18b20Temperature, 2) + 
-                  String(",") +
-                  String("\"dthTemperature\":") + String(dthTemperature) + 
-                  String(",") +
-                  String("\"dhtHumidity\":") + String(dhtHumidity) +
-                String("}");
+  String msg = sensorsMessage.createMessage();
   client.print(msg);
-  
-  client.println("");
-  client.println("");
-  client.println("");
-  client.println("");
-  client.println("");
-  client.println("");
   delay(1);
   Serial.println("Client disonnected");
   Serial.println("");
