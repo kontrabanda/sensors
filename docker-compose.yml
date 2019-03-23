@@ -5,7 +5,7 @@ services:
     volumes:
       - ./sensors-backend/build/libs:/app
     ports:
-      - 4400:4000
+      - 5005:5005
 
   sensors-frontend:
     build: ./sensors-frontend

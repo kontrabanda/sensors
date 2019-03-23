@@ -4,8 +4,9 @@ RUN mkdir app
 WORKDIR app
 COPY ./build/libs/*.jar app.jar
 
+EXPOSE 5005
 
-EXPOSE 4000
-CMD ["ls", "-a"]
-
-CMD ["java","-jar","sensors-backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", \
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005", \
+        "-jar", \
+        "sensors-backend-0.0.1-SNAPSHOT.jar"]
