@@ -4,7 +4,7 @@ RUN mkdir app
 WORKDIR app
 COPY ./build/libs/*.jar app.jar
 
-EXPOSE 5005
+EXPOSE 4000 5005
 
 CMD ["java", \
         "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005", \
