@@ -8,19 +8,12 @@ void SensorsCompositeMessage::begin()
   }
 }
 
-String SensorsCompositeMessage::getName() {
-  String name = String("");
-	for (int i = 0; i < size-1; i++) {
-      name += sensors[i]->getName() + "_";
-  }
-  name += sensors[size-1]->getName();
-  return name;
-}
-
 String SensorsCompositeMessage::createMessage()
 {
   String msg = String("{");
-  msg += String("\"name\": \"") + sensorName + String("\",");
+  msg += String("\"name\": \"") + getName() + String("\",");
+  msg += String("\"prefix\": \"") + getPrefix() + String("\",");
+  msg += String("\"type\": \"") + getType() + String("\",");
   msg += String("\"sensors\": ") + String("[");
   
   for (int i = 0; i < size-1; i++) {

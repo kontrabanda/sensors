@@ -15,6 +15,10 @@ String DS18B20Message::createMessage()
 	return String("{") +
           String("\"name\":") + "\"" + getName() + "\"" +
           String(",") +
+          String("\"type\": \"") + getType() + String("\"") +
+          String(",") +
+          String("\"prefix\": \"") + getPrefix() + String("\"") +
+          String(",") +
   			  String("\"temperature\":") + String(temperature, 2) + 
 		     String("}");
 }

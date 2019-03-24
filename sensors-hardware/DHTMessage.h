@@ -8,12 +8,16 @@
 class DHTMessage: public SensorMessage {
 public:
   String createMessage();
-  String getName() {
+  String getType() {
     return "DHT";
   }
+  String getPrefix() {
+    return prefix;
+  }
   void begin();
-  DHTMessage(int pin): pin(pin), dht() { }
+  DHTMessage(String prefix, int pin): prefix(prefix), pin(pin), dht() { }
 private:
+  String prefix;
   int pin;
   DHT dht;
 };

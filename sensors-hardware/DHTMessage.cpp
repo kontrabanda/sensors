@@ -17,6 +17,10 @@ String DHTMessage::createMessage()
 	return String("{") +
          String("\"name\":") + "\"" + getName() + "\"" +
          String(",") +
+         String("\"type\": \"") + getType() + String("\"") +
+         String(",") +
+         String("\"prefix\": \"") + getPrefix() + String("\"") +
+         String(",") +
 		     String("\"temperature\":") + String(temperature) + 
 		     String(",") +
 		     String("\"humidity\":") + String(humidity) +

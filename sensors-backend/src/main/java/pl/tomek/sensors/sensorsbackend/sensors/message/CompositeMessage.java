@@ -1,10 +1,20 @@
 package pl.tomek.sensors.sensorsbackend.sensors.message;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CompositeMessage  {
-    public List<SensorMessage> messages = new ArrayList<>();
+public class CompositeMessage implements SensorMessage {
 
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    @Override
+    public String getPrefix() {
+        return null;
+    }
 }

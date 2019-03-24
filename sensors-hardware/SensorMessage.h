@@ -5,7 +5,11 @@
 
 class SensorMessage {
 public:
-  virtual String getName();
+  virtual String getPrefix();
+  virtual String getType();
+  virtual String getName() {
+    return getPrefix() + "_" + getType();
+  }
   virtual String createMessage();
   virtual void begin();
 };

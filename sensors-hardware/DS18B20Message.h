@@ -9,12 +9,16 @@
 class DS18B20Message: public SensorMessage {
 public:
 	String createMessage();
-  String getName() {
+  String getType() {
     return "DS18B20";
   }
+  String getPrefix() {
+    return prefix;
+  }
   void begin();
-  DS18B20Message(int pin): pin(pin), oneWire(pin), temperatureSensor(&oneWire) { }
+  DS18B20Message(String prefix, int pin): prefix(prefix), pin(pin), oneWire(pin), temperatureSensor(&oneWire) { }
 private:
+  String prefix;
   int pin;
 	OneWire oneWire;
 	DallasTemperature temperatureSensor;

@@ -6,11 +6,17 @@
 class SensorsCompositeMessage: public SensorMessage {
 public:
   String createMessage();
-  String getName();
+  String getPrefix() {
+    return prefix;
+  }
+  String getType() {
+    return type;
+  }
   void begin();
-  SensorsCompositeMessage(char* sensorName, SensorMessage** sensors, int size): sensorName(sensorName), sensors(sensors), size(size) { }
+  SensorsCompositeMessage(String type, String prefix, SensorMessage** sensors, int size): type(type), prefix(prefix), sensors(sensors), size(size) { }
 private:
-  char* sensorName;
+  String type;
+  String prefix;
   SensorMessage** sensors;
   int size;
 };
