@@ -7,26 +7,62 @@ import lombok.Getter;
 public class DhtMessage implements SensorMessage {
     public static final String TYPE = "DHT";
 
-    private final int temperature;
-    private final int humidity;
+    public static class DhtMessageBuilder {
+        private String prefix;
+        private String name;
+        private Integer temperature;
+        private Integer humidity;
 
-    public DhtMessage(int temperature, int humidity) {
-        this.temperature = temperature;
-        this.humidity = humidity;
+        public static DhtMessageBuilder of() {
+            return new DhtMessageBuilder();
+        }
+
+        public DhtMessageBuilder addPrefix(String input) {
+            prefix = input;
+            return this;
+        }
+
+        public DhtMessageBuilder addName(String input) {
+            name = input;
+            return this;
+        }
+
+        public DhtMessageBuilder addTemperature(Integer input) {
+            temperature = input;
+            return this;
+        }
+
+        public DhtMessageBuilder addHumidity(Integer input) {
+            humidity = input;
+            return this;
+        }
+
+        public DhtMessage build() {
+            return new DhtMessage(this);
+        }
     }
 
-    @Override
-    public String getName() {
-        return null;
+    private final String prefix;
+    private final String name;
+    private final Integer temperature;
+    private final Integer humidity;
+
+    public DhtMessage(DhtMessage input) {
+        prefix = input.prefix;
+        name = input.name;
+        temperature = input.temperature;
+        humidity = input.humidity;
+    }
+
+    private DhtMessage(DhtMessageBuilder builder) {
+        prefix = builder.prefix;
+        name = builder.name;
+        temperature = builder.temperature;
+        humidity = builder.humidity;
     }
 
     @Override
     public String getType() {
         return TYPE;
-    }
-
-    @Override
-    public String getPrefix() {
-        return null;
     }
 }
