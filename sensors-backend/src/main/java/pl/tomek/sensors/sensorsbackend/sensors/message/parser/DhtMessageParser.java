@@ -17,8 +17,8 @@ public class DhtMessageParser implements MessageParser<DhtMessage> {
         return DhtMessage.DhtMessageBuilder.of()
                 .addName(ParserUtil.parseTextOrNull(input, NAME_FIELD))
                 .addPrefix(ParserUtil.parseTextOrNull(input, PREFIX_FIELD))
-                .addTemperature(ParserUtil.parseIntegerOrNull(input, HUMIDITY_FIELD))
-                .addHumidity(ParserUtil.parseIntegerOrNull(input, TEMPERATURE_FIELD))
+                .addTemperature(ParserUtil.parseIntegerOrNull(input, TEMPERATURE_FIELD))
+                .addHumidity(ParserUtil.parseIntegerOrNull(input, HUMIDITY_FIELD))
                 .build();
     }
 }

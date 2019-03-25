@@ -40,12 +40,6 @@ public class Ds18b20Message implements SensorMessage {
     private final String name;
     private final Float temperature;
 
-    public Ds18b20Message(Ds18b20Message input) {
-        prefix = input.prefix;
-        name = input.name;
-        temperature = input.temperature;
-    }
-
     private Ds18b20Message(Ds18b20MessageBuilder builder) {
         prefix = builder.prefix;
         name = builder.name;

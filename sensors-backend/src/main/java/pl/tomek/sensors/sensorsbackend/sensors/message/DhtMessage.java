@@ -47,13 +47,6 @@ public class DhtMessage implements SensorMessage {
     private final Integer temperature;
     private final Integer humidity;
 
-    public DhtMessage(DhtMessage input) {
-        prefix = input.prefix;
-        name = input.name;
-        temperature = input.temperature;
-        humidity = input.humidity;
-    }
-
     private DhtMessage(DhtMessageBuilder builder) {
         prefix = builder.prefix;
         name = builder.name;
