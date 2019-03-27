@@ -11,9 +11,9 @@ void SensorsCompositeMessage::begin()
 String SensorsCompositeMessage::createMessage()
 {
   String msg = String("{");
-  msg += String("\"name\": \"") + getName() + String("\",");
-  msg += String("\"prefix\": \"") + getPrefix() + String("\",");
+  msg += String("\"id\": \"") + getId() + String("\",");
   msg += String("\"type\": \"") + getType() + String("\",");
+  msg += String("\"serial\": \"") + getSerial() + String("\",");
   msg += String("\"sensors\": ") + String("[");
   
   for (int i = 0; i < size-1; i++) {

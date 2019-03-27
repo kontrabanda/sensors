@@ -5,10 +5,10 @@
 
 class SensorMessage {
 public:
-  virtual String getPrefix();
+  virtual String getSerial();
   virtual String getType();
-  virtual String getName() {
-    return getPrefix() + "_" + getType();
+  virtual String getId() {
+    return getSerial() + "_" + getType();
   }
   virtual String createMessage();
   virtual void begin();

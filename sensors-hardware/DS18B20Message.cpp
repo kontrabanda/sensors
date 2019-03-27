@@ -13,11 +13,11 @@ String DS18B20Message::createMessage()
 	delay(100);
 
 	return String("{") +
-          String("\"name\":") + "\"" + getName() + "\"" +
+          String("\"id\":") + "\"" + getId() + "\"" +
           String(",") +
           String("\"type\": \"") + getType() + String("\"") +
           String(",") +
-          String("\"prefix\": \"") + getPrefix() + String("\"") +
+          String("\"serial\": \"") + getSerial() + String("\"") +
           String(",") +
   			  String("\"temperature\":") + String(temperature, 2) + 
 		     String("}");

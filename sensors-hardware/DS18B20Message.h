@@ -12,13 +12,13 @@ public:
   String getType() {
     return "DS18B20";
   }
-  String getPrefix() {
-    return prefix;
+  String getSerial() {
+    return serial;
   }
   void begin();
-  DS18B20Message(String prefix, int pin): prefix(prefix), pin(pin), oneWire(pin), temperatureSensor(&oneWire) { }
+  DS18B20Message(String serial, int pin): serial(serial), pin(pin), oneWire(pin), temperatureSensor(&oneWire) { }
 private:
-  String prefix;
+  String serial;
   int pin;
 	OneWire oneWire;
 	DallasTemperature temperatureSensor;

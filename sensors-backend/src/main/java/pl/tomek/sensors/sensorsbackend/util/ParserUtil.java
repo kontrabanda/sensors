@@ -1,4 +1,4 @@
-package pl.tomek.sensors.sensorsbackend.sensors.message.parser;
+package pl.tomek.sensors.sensorsbackend.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.math.NumberUtils;

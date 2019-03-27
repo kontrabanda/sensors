@@ -11,13 +11,13 @@ public:
   String getType() {
     return "DHT";
   }
-  String getPrefix() {
-    return prefix;
+  String getSerial() {
+    return serial;
   }
   void begin();
-  DHTMessage(String prefix, int pin): prefix(prefix), pin(pin), dht() { }
+  DHTMessage(String serial, int pin): serial(serial), pin(pin), dht() { }
 private:
-  String prefix;
+  String serial;
   int pin;
   DHT dht;
 };
