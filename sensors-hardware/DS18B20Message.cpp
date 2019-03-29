@@ -13,12 +13,16 @@ String DS18B20Message::createMessage()
 	delay(100);
 
 	return String("{") +
-          String("\"id\":") + "\"" + getId() + "\"" +
+          String("\"description\":") + getDescription() +
           String(",") +
-          String("\"type\": \"") + getType() + String("\"") +
-          String(",") +
-          String("\"serial\": \"") + getSerial() + String("\"") +
-          String(",") +
-  			  String("\"temperature\":") + String(temperature, 2) + 
+          String("\"measurement\":") +
+          String("[") +
+              String("{") +
+                String("\"name\":\"temperature\",") +
+  			        String("\"value\":") + String(temperature, 2) + "," +
+                String("\"type\":\"Number\",") +
+                String("\"unit\":\"C\"") +
+              String("}") +
+          String("]") +
 		     String("}");
 }

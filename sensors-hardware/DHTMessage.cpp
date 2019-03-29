@@ -15,14 +15,22 @@ String DHTMessage::createMessage()
 	delay(100);
 
 	return String("{") +
-         String("\"id\":") + "\"" + getId() + "\"" +
+         String("\"description\":") + getDescription() +
          String(",") +
-         String("\"type\": \"") + getType() + String("\"") +
-         String(",") +
-         String("\"serial\": \"") + getSerial() + String("\"") +
-         String(",") +
-		     String("\"temperature\":") + String(temperature) + 
-		     String(",") +
-		     String("\"humidity\":") + String(humidity) +
+         String("\"measurement\":") +
+          String("[") +
+              String("{") +
+                String("\"name\":\"temperature\",") +
+                String("\"value\":") + String(temperature) + "," +
+                String("\"type\":\"Number\",") +
+                String("\"unit\":\"C\"") +
+              String("},") +
+              String("{") +
+                String("\"name\":\"humidity\",") +
+                String("\"value\":") + String(humidity) + "," +
+                String("\"type\":\"Percentage\",") +
+                String("\"unit\":\"%\"") +
+              String("}") +
+          String("]") +
 		   String("}");
 }

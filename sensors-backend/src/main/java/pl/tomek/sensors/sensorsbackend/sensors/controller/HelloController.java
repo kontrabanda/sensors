@@ -1,4 +1,4 @@
-package pl.tomek.sensors.sensorsbackend.controller;
+package pl.tomek.sensors.sensorsbackend.sensors.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
