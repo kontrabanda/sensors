@@ -11,6 +11,7 @@ import pl.tomek.sensors.sensorsbackend.sensors.model.message.SensorMessage;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import static org.junit.Assert.*;
 
@@ -72,12 +73,21 @@ public class SensorsMessageServiceTest {
 
     @Test
     public void testThree() throws Exception {
-        Observable<SensorMessage> ds18b20MessageGenerator = getDs18b20MessageGenerator();
-        Observable<Long> fiveSecondInterval = Observable.interval(5, TimeUnit.SECONDS);
-        Observable.zip(fiveSecondInterval, ds18b20MessageGenerator, (interval, item) -> item)
+        Observable<SensorMessage> ds18b20MessageGenerator = getGeneratorWithInterval(this::getDs18b20MessageGenerator, 8, TimeUnit.SECONDS);
+        Observable<SensorMessage> dhtMessageGenerator = getGeneratorWithInterval(this::getDhtMessageGenerator, 11, TimeUnit.SECONDS);
+
+        List<Observable<SensorMessage>> messagesGenerators = List.of(ds18b20MessageGenerator, dhtMessageGenerator);
+
+        Observable.merge(messagesGenerators)
                 .subscribe(System.out::println);
 
-        Thread.sleep(60*1000);
+
+        Thread.sleep(5*60*1000);
+    }
+
+    private <T> Observable<T> getGeneratorWithInterval(Supplier<Observable<T>> supplier, long period, TimeUnit timeUnit) {
+        Observable<Long> intervalGenerator = Observable.interval(period, timeUnit);
+        return Observable.zip(intervalGenerator, supplier.get(), (interval, item) -> item);
     }
 
     private Observable<SensorMessage> getDs18b20MessageGenerator() {
@@ -87,7 +97,7 @@ public class SensorsMessageServiceTest {
                 getDs18b20Message(22.7f),
                 getDs18b20Message(24.6f),
                 getDs18b20Message(25.3f)
-        );
+        ).repeat(5);
     }
 
     private Observable<SensorMessage> getDhtMessageGenerator() {
@@ -97,7 +107,7 @@ public class SensorsMessageServiceTest {
                 getDhtMessage(21, 64),
                 getDhtMessage(22, 33),
                 getDhtMessage(20, 90)
-        );
+        ).repeat(5);
     }
 
     private SensorMessage getDs18b20Message(float temperature) {
