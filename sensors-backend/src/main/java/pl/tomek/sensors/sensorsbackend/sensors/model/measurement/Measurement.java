@@ -54,4 +54,14 @@ public class Measurement<T> {
         this.unit = builder.unit;
         this.type = builder.type;
     }
+
+    @Override
+    public String toString() {
+        return "Measurement{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                ", unit='" + unit + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

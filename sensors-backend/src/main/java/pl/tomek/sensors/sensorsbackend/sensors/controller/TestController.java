@@ -25,4 +25,11 @@ public class TestController {
         result.put("text", sensorsMessageService.getMeasurement("http://192.168.0.35/"));
         return result;
     }
+
+    @RequestMapping(value = "example", method = RequestMethod.GET)
+    public Object example() {
+        Map<String, Object> result = new HashMap<>();
+        result.put("text", "TEST1!");
+        return result;
+    }
 }

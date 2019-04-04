@@ -37,6 +37,14 @@ public class DeviceDescription {
     private final String type;
     private final String serial;
 
+    public static DeviceDescription of(String id, String serial, String type) {
+        return DeviceDescription.DeviceDescriptionBuilder.of()
+                .addId(id)
+                .addSerial(serial)
+                .addType(type)
+                .build();
+    }
+
     private DeviceDescription(DeviceDescriptionBuilder builder) {
         id = builder.id;
         type = builder.type;

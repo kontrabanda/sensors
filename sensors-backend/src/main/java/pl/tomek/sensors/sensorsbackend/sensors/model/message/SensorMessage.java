@@ -8,20 +8,20 @@ import java.util.List;
 
 @Getter
 public class SensorMessage {
-    public static class BoardMessageBuilder {
+    public static class SensorMessageBuilder {
         private DeviceDescription description;
         private List<Measurement> measurements;
 
-        public static BoardMessageBuilder of() {
-            return new BoardMessageBuilder();
+        public static SensorMessageBuilder of() {
+            return new SensorMessageBuilder();
         }
 
-        public BoardMessageBuilder addDescription(DeviceDescription input) {
+        public SensorMessageBuilder addDescription(DeviceDescription input) {
             description = input;
             return this;
         }
 
-        public BoardMessageBuilder addMeasurements(List<Measurement> input) {
+        public SensorMessageBuilder addMeasurements(List<Measurement> input) {
             measurements = List.copyOf(input);
             return this;
         }
@@ -34,7 +34,14 @@ public class SensorMessage {
     private final DeviceDescription description;
     private final List<Measurement> measurements;
 
-    private SensorMessage(BoardMessageBuilder builder) {
+    public static SensorMessage of(DeviceDescription description, List<Measurement> measurements) {
+        return SensorMessageBuilder.of()
+                .addDescription(description)
+                .addMeasurements(measurements)
+                .build();
+    }
+
+    private SensorMessage(SensorMessageBuilder builder) {
         description = builder.description;
         measurements = builder.measurements;
     }

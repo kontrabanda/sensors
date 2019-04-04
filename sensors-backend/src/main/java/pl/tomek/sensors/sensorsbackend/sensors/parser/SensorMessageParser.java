@@ -22,7 +22,7 @@ public class SensorMessageParser implements Parser<SensorMessage> {
 
     @Override
     public SensorMessage parse(JsonNode input) {
-        return SensorMessage.BoardMessageBuilder.of()
+        return SensorMessage.SensorMessageBuilder.of()
                 .addDescription(ParserUtil.parseObjectOrNull(input, DESCRIPTION_FIELD, deviceDescriptionJsonParser))
                 .addMeasurements(ParserUtil.parseList(input, MEASUREMENT_FIELD, measurementParser))
                 .build();

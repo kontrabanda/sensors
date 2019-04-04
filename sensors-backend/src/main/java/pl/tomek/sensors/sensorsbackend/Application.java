@@ -1,5 +1,6 @@
 package pl.tomek.sensors.sensorsbackend;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pl.tomek.sensors.sensorsbackend.sensors.service.SensorsMessageService;
 
 @EnableAsync
 @SpringBootApplication
@@ -31,5 +33,10 @@ public class Application {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public CommandLineRunner setupElasticSearch(SensorsMessageService sensorsMessageService) {
+        return (args) -> sensorsMessageService.getBoardMessage().subscribe(System.out::println);
     }
 }
